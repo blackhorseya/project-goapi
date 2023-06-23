@@ -16,7 +16,7 @@ type impl struct {
 }
 
 // NewImpl serve caller to create a user biz
-func NewImpl(db db.ReaderWriter) userB.Bizer {
+func NewImpl(db db.ReaderWriter) userB.IBiz {
 	return &impl{
 		db: db,
 	}

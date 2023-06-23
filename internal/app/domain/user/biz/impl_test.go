@@ -20,14 +20,14 @@ type suiteTester struct {
 	logger *zap.Logger
 	ctrl   *gomock.Controller
 	db     *db.MockReaderWriter
-	bizer  userB.Bizer
+	biz    userB.IBiz
 }
 
 func (s *suiteTester) SetupTest() {
 	s.logger, _ = zap.NewDevelopment()
 	s.ctrl = gomock.NewController(s.T())
 	s.db = db.NewMockReaderWriter(s.ctrl)
-	s.bizer = CreateBizer(s.db)
+	s.biz = CreateBiz(s.db)
 }
 
 func (s *suiteTester) TearDownTest() {
@@ -82,7 +82,7 @@ func (s *suiteTester) Test_impl_Login() {
 				tt.args.mock()
 			}
 
-			gotInfo, err := s.bizer.Login(contextx.BackgroundWithLogger(s.logger), tt.args.username, tt.args.password)
+			gotInfo, err := s.biz.Login(contextx.BackgroundWithLogger(s.logger), tt.args.username, tt.args.password)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Login() error = %v, wantErr %v", err, tt.wantErr)
 				return

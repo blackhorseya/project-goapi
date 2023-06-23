@@ -5,6 +5,7 @@ package db
 import (
 	userM "github.com/blackhorseya/project-goapi/entity/domain/user/model"
 	"github.com/blackhorseya/project-goapi/pkg/contextx"
+	"github.com/google/wire"
 )
 
 // Reader declare a reader interface
@@ -27,3 +28,6 @@ type ReaderWriter interface {
 	Reader
 	Writer
 }
+
+// ProviderSet is a provider set for wire
+var ProviderSet = wire.NewSet(NewImpl)

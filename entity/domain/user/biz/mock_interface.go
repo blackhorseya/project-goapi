@@ -12,31 +12,31 @@ import (
 	gomock "github.com/golang/mock/gomock"
 )
 
-// MockBizer is a mock of Bizer interface.
-type MockBizer struct {
+// MockIBiz is a mock of IBiz interface.
+type MockIBiz struct {
 	ctrl     *gomock.Controller
-	recorder *MockBizerMockRecorder
+	recorder *MockIBizMockRecorder
 }
 
-// MockBizerMockRecorder is the mock recorder for MockBizer.
-type MockBizerMockRecorder struct {
-	mock *MockBizer
+// MockIBizMockRecorder is the mock recorder for MockIBiz.
+type MockIBizMockRecorder struct {
+	mock *MockIBiz
 }
 
-// NewMockBizer creates a new mock instance.
-func NewMockBizer(ctrl *gomock.Controller) *MockBizer {
-	mock := &MockBizer{ctrl: ctrl}
-	mock.recorder = &MockBizerMockRecorder{mock}
+// NewMockIBiz creates a new mock instance.
+func NewMockIBiz(ctrl *gomock.Controller) *MockIBiz {
+	mock := &MockIBiz{ctrl: ctrl}
+	mock.recorder = &MockIBizMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockBizer) EXPECT() *MockBizerMockRecorder {
+func (m *MockIBiz) EXPECT() *MockIBizMockRecorder {
 	return m.recorder
 }
 
 // Login mocks base method.
-func (m *MockBizer) Login(ctx contextx.Contextx, username, password string) (*model.Profile, error) {
+func (m *MockIBiz) Login(ctx contextx.Contextx, username, password string) (*model.Profile, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Login", ctx, username, password)
 	ret0, _ := ret[0].(*model.Profile)
@@ -45,13 +45,13 @@ func (m *MockBizer) Login(ctx contextx.Contextx, username, password string) (*mo
 }
 
 // Login indicates an expected call of Login.
-func (mr *MockBizerMockRecorder) Login(ctx, username, password interface{}) *gomock.Call {
+func (mr *MockIBizMockRecorder) Login(ctx, username, password interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Login", reflect.TypeOf((*MockBizer)(nil).Login), ctx, username, password)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Login", reflect.TypeOf((*MockIBiz)(nil).Login), ctx, username, password)
 }
 
 // Register mocks base method.
-func (m *MockBizer) Register(ctx contextx.Contextx, username, password string) (*model.Profile, error) {
+func (m *MockIBiz) Register(ctx contextx.Contextx, username, password string) (*model.Profile, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Register", ctx, username, password)
 	ret0, _ := ret[0].(*model.Profile)
@@ -60,7 +60,7 @@ func (m *MockBizer) Register(ctx contextx.Contextx, username, password string) (
 }
 
 // Register indicates an expected call of Register.
-func (mr *MockBizerMockRecorder) Register(ctx, username, password interface{}) *gomock.Call {
+func (mr *MockIBizMockRecorder) Register(ctx, username, password interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Register", reflect.TypeOf((*MockBizer)(nil).Register), ctx, username, password)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Register", reflect.TypeOf((*MockIBiz)(nil).Register), ctx, username, password)
 }

@@ -7,8 +7,8 @@ import (
 	"github.com/blackhorseya/project-goapi/pkg/contextx"
 )
 
-// Bizer is a biz interface
-type Bizer interface {
+// IBiz is a biz interface
+type IBiz interface {
 	// Login serve caller to give username and password to login system
 	Login(ctx contextx.Contextx, username, password string) (info *userM.Profile, err error)
 
