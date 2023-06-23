@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "biz",
+    srcs = ["impl.go"],
+    importpath = "github.com/blackhorseya/project-goapi/internal/app/domain/user/biz",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//entity/domain/user/biz",
+        "//entity/domain/user/model",
+        "//internal/app/domain/user/biz/db",
+        "//pkg/contextx",
+    ],
+)
