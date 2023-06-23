@@ -9,8 +9,5 @@ go_library(
     ],
     importpath = "github.com/blackhorseya/project-goapi/internal/pkg/errorx",
     visibility = ["//:__subpackages__"],
-    deps = [
-        "//pkg/er",
-        "@com_github_hashgreen_hg_goapi//pkg/er",
-    ],
+    deps = ["//pkg/er"],
 )

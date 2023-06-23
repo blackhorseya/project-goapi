@@ -3,7 +3,7 @@ package errorx
 import (
 	"net/http"
 
-	"github.com/hashgreen/hg-goapi/pkg/er"
+	"github.com/blackhorseya/project-goapi/pkg/er"
 )
 
 var (
