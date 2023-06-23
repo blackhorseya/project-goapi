@@ -1,9 +1,10 @@
-module github.com/hashgreen/project-goapi
+module github.com/blackhorseya/project-goapi
 
 go 1.20
 
 require (
 	github.com/gin-gonic/gin v1.9.1
+	github.com/golang/mock v1.6.0
 	go.uber.org/zap v1.24.0
 	google.golang.org/protobuf v1.30.0
 )
