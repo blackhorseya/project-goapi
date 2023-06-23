@@ -13,9 +13,8 @@ clean: ## clean artifacts
 version: ## show version
 	@echo $(VERSION)
 
-## go
-.PHONY: gen-go
-gen-go: gen-pb-go gazelle ## generate all go files
+.PHONY: gen
+gen: gen-pb-go gazelle ## generate all go files
 	## Successfully generated all go files
 
 ## protobuf
