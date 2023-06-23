@@ -27,12 +27,12 @@ func NewImpl(rw *mongo.Client) ReaderWriter {
 	}
 }
 
-func (i *impl) GetUserByName(ctx contextx.Contextx, name string) (info *userM.Profile, err error) {
+func (i *impl) GetUserByUsername(ctx contextx.Contextx, username string) (info *userM.Profile, err error) {
 	timeout, cancelFunc := contextx.WithTimeout(ctx, 5*time.Second)
 	defer cancelFunc()
 
 	coll := i.rw.Database(dbName).Collection(collName)
-	filter := bson.M{"name": name}
+	filter := bson.M{"username": username}
 	var got *userM.Profile
 	err = coll.FindOne(timeout, filter).Decode(&got)
 	if err != nil {
@@ -40,13 +40,13 @@ func (i *impl) GetUserByName(ctx contextx.Contextx, name string) (info *userM.Pr
 			return nil, nil
 		}
 
-		return nil, errors.Wrap(err, "find one user by name failed")
+		return nil, errors.Wrap(err, "find one user by username failed")
 	}
 
 	return got, nil
 }
 
-func (i *impl) CreateUser(ctx contextx.Contextx, name, password string) (info *userM.Profile, err error) {
+func (i *impl) CreateUser(ctx contextx.Contextx, username, password string) (info *userM.Profile, err error) {
 	// todo: 2023/6/24|sean|impl me
 	panic("implement me")
 }

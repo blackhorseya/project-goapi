@@ -35,19 +35,19 @@ func (m *MockReader) EXPECT() *MockReaderMockRecorder {
 	return m.recorder
 }
 
-// GetUserByName mocks base method.
-func (m *MockReader) GetUserByName(ctx contextx.Contextx, name string) (*model.Profile, error) {
+// GetUserByUsername mocks base method.
+func (m *MockReader) GetUserByUsername(ctx contextx.Contextx, username string) (*model.Profile, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetUserByName", ctx, name)
+	ret := m.ctrl.Call(m, "GetUserByUsername", ctx, username)
 	ret0, _ := ret[0].(*model.Profile)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetUserByName indicates an expected call of GetUserByName.
-func (mr *MockReaderMockRecorder) GetUserByName(ctx, name interface{}) *gomock.Call {
+// GetUserByUsername indicates an expected call of GetUserByUsername.
+func (mr *MockReaderMockRecorder) GetUserByUsername(ctx, username interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByName", reflect.TypeOf((*MockReader)(nil).GetUserByName), ctx, name)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByUsername", reflect.TypeOf((*MockReader)(nil).GetUserByUsername), ctx, username)
 }
 
 // MockWriter is a mock of Writer interface.
@@ -74,18 +74,18 @@ func (m *MockWriter) EXPECT() *MockWriterMockRecorder {
 }
 
 // CreateUser mocks base method.
-func (m *MockWriter) CreateUser(ctx contextx.Contextx, name, password string) (*model.Profile, error) {
+func (m *MockWriter) CreateUser(ctx contextx.Contextx, username, password string) (*model.Profile, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CreateUser", ctx, name, password)
+	ret := m.ctrl.Call(m, "CreateUser", ctx, username, password)
 	ret0, _ := ret[0].(*model.Profile)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // CreateUser indicates an expected call of CreateUser.
-func (mr *MockWriterMockRecorder) CreateUser(ctx, name, password interface{}) *gomock.Call {
+func (mr *MockWriterMockRecorder) CreateUser(ctx, username, password interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockWriter)(nil).CreateUser), ctx, name, password)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockWriter)(nil).CreateUser), ctx, username, password)
 }
 
 // UpdateUser mocks base method.
@@ -126,33 +126,33 @@ func (m *MockReaderWriter) EXPECT() *MockReaderWriterMockRecorder {
 }
 
 // CreateUser mocks base method.
-func (m *MockReaderWriter) CreateUser(ctx contextx.Contextx, name, password string) (*model.Profile, error) {
+func (m *MockReaderWriter) CreateUser(ctx contextx.Contextx, username, password string) (*model.Profile, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CreateUser", ctx, name, password)
+	ret := m.ctrl.Call(m, "CreateUser", ctx, username, password)
 	ret0, _ := ret[0].(*model.Profile)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // CreateUser indicates an expected call of CreateUser.
-func (mr *MockReaderWriterMockRecorder) CreateUser(ctx, name, password interface{}) *gomock.Call {
+func (mr *MockReaderWriterMockRecorder) CreateUser(ctx, username, password interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockReaderWriter)(nil).CreateUser), ctx, name, password)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockReaderWriter)(nil).CreateUser), ctx, username, password)
 }
 
-// GetUserByName mocks base method.
-func (m *MockReaderWriter) GetUserByName(ctx contextx.Contextx, name string) (*model.Profile, error) {
+// GetUserByUsername mocks base method.
+func (m *MockReaderWriter) GetUserByUsername(ctx contextx.Contextx, username string) (*model.Profile, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetUserByName", ctx, name)
+	ret := m.ctrl.Call(m, "GetUserByUsername", ctx, username)
 	ret0, _ := ret[0].(*model.Profile)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetUserByName indicates an expected call of GetUserByName.
-func (mr *MockReaderWriterMockRecorder) GetUserByName(ctx, name interface{}) *gomock.Call {
+// GetUserByUsername indicates an expected call of GetUserByUsername.
+func (mr *MockReaderWriterMockRecorder) GetUserByUsername(ctx, username interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByName", reflect.TypeOf((*MockReaderWriter)(nil).GetUserByName), ctx, name)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByUsername", reflect.TypeOf((*MockReaderWriter)(nil).GetUserByUsername), ctx, username)
 }
 
 // UpdateUser mocks base method.

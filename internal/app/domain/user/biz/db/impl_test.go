@@ -81,18 +81,20 @@ func TestAll(t *testing.T) {
 
 func (s *suiteTester) Test_impl_GetUserByUsername() {
 	user1 := &userM.Profile{
-		Id:        0,
-		Name:      "user1",
-		Email:     "",
-		Picture:   "",
-		Token:     "",
-		CreatedAt: nil,
-		UpdatedAt: nil,
+		Id:          0,
+		Username:    "user1",
+		Password:    "",
+		Name:        "",
+		Email:       "",
+		Picture:     "",
+		AccessToken: "",
+		CreatedAt:   nil,
+		UpdatedAt:   nil,
 	}
 
 	type args struct {
-		name string
-		mock func()
+		username string
+		mock     func()
 	}
 	tests := []struct {
 		name     string
@@ -101,14 +103,14 @@ func (s *suiteTester) Test_impl_GetUserByUsername() {
 		wantErr  bool
 	}{
 		{
-			name:     "get user by name then not found return nil",
-			args:     args{name: "user1"},
+			name:     "get user by username then not found return nil",
+			args:     args{username: "user1"},
 			wantInfo: nil,
 			wantErr:  false,
 		},
 		{
-			name: "get user by name then ok",
-			args: args{name: "user1", mock: func() {
+			name: "get user by username then ok",
+			args: args{username: "user1", mock: func() {
 				_, _ = s.rw.Database(dbName).Collection(collName).InsertOne(contextx.Background(), user1)
 			}},
 			wantInfo: user1,
@@ -121,13 +123,13 @@ func (s *suiteTester) Test_impl_GetUserByUsername() {
 				tt.args.mock()
 			}
 
-			gotInfo, err := s.db.GetUserByName(contextx.BackgroundWithLogger(s.logger), tt.args.name)
+			gotInfo, err := s.db.GetUserByUsername(contextx.BackgroundWithLogger(s.logger), tt.args.username)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("GetUserByName() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("GetUserByUsername() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(gotInfo, tt.wantInfo) {
-				t.Errorf("GetUserByName() gotInfo = %v, want %v", gotInfo, tt.wantInfo)
+				t.Errorf("GetUserByUsername() gotInfo = %v, want %v", gotInfo, tt.wantInfo)
 			}
 		})
 	}
