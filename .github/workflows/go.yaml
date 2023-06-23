@@ -1,0 +1,38 @@
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "**.go"
+      - ".github/workflows/go.yaml"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "**.go"
+      - ".github/workflows/go.yaml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Mount bazel cache
+        uses: actions/cache@v3
+        with:
+          path: "~/.cache/bazel"
+          key: bazel
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '^1.20'
+          cache: true
+
+      - name: Build
+        run: |
+          make build-go

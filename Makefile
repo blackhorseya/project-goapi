@@ -17,6 +17,15 @@ version: ## show version
 gen: gen-pb-go gazelle ## generate all go files
 	## Successfully generated all go files
 
+## go
+.PHONY: build-go
+build-go: ## build go binary
+	@bazel build //...
+
+.PHONY: test-go
+test-go: ## run go test
+	@bazel test //...
+
 ## protobuf
 .PHONY: gen-pb-go
 gen-pb-go: ## generate protobuf messages and services
