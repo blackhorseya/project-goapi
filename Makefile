@@ -26,3 +26,12 @@ gen-pb-go: ## generate protobuf messages and services
 	## Starting inject tags
 	@protoc-go-inject-tag -input="./entity/domain/*/model/*.pb.go"
 	@echo Successfully injected tags
+
+## bazel
+.PHONY: gazelle-repos
+gazelle-repos: ## update gazelle repos
+	@bazel run //:gazelle -- update-repos -from_file=go.mod -to_macro=deps.bzl%go_dependencies -prune
+
+.PHONY: gazelle
+gazelle: gazelle-repos ## run gazelle with bazel
+	@bazel run //:gazelle
