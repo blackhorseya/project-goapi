@@ -9,44 +9,16 @@ import (
 	"github.com/blackhorseya/project-goapi/internal/pkg/storage/mongodb"
 	"github.com/blackhorseya/project-goapi/pkg/contextx"
 	"github.com/stretchr/testify/suite"
-	"github.com/testcontainers/testcontainers-go"
-	"github.com/testcontainers/testcontainers-go/wait"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.uber.org/zap"
 )
 
-// mongodbContainer represents the mongodb container type used in the module
-type mongodbContainer struct {
-	testcontainers.Container
-}
-
-// startContainer creates an instance of the mongodb container type
-func startContainer(ctx context.Context) (*mongodbContainer, error) {
-	req := testcontainers.ContainerRequest{
-		Image:        "mongo:6",
-		ExposedPorts: []string{"27017/tcp"},
-		WaitingFor: wait.ForAll(
-			wait.ForLog("Waiting for connections"),
-			wait.ForListeningPort("27017/tcp"),
-		),
-	}
-	container, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
-		ContainerRequest: req,
-		Started:          true,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	return &mongodbContainer{Container: container}, nil
-}
-
 type suiteTester struct {
 	suite.Suite
 
 	logger  *zap.Logger
-	mongodb *mongodbContainer
+	mongodb *mongodb.Container
 	rw      *mongo.Client
 	db      ReaderWriter
 }
@@ -55,7 +27,7 @@ func (s *suiteTester) SetupTest() {
 	s.logger, _ = zap.NewDevelopment()
 
 	ctx := contextx.BackgroundWithLogger(s.logger)
-	s.mongodb, _ = startContainer(ctx)
+	s.mongodb, _ = mongodb.NewContainer(ctx)
 	endpoint, _ := s.mongodb.Endpoint(ctx, "mongodb")
 	s.rw, _ = mongo.Connect(ctx, options.Client().ApplyURI(endpoint))
 

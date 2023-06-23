@@ -31,8 +31,6 @@ go_test(
         "//internal/pkg/storage/mongodb",
         "//pkg/contextx",
         "@com_github_stretchr_testify//suite",
-        "@com_github_testcontainers_testcontainers_go//:testcontainers-go",
-        "@com_github_testcontainers_testcontainers_go//wait",
         "@org_mongodb_go_mongo_driver//mongo",
         "@org_mongodb_go_mongo_driver//mongo/options",
         "@org_uber_go_zap//:zap",

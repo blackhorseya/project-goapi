@@ -4,6 +4,8 @@ import (
 	"github.com/blackhorseya/project-goapi/pkg/contextx"
 	"github.com/google/wire"
 	"github.com/pkg/errors"
+	"github.com/testcontainers/testcontainers-go"
+	"github.com/testcontainers/testcontainers-go/wait"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -21,6 +23,32 @@ func NewMongoClient(opts *Options) (*mongo.Client, error) {
 	}
 
 	return client, nil
+}
+
+// Container represents the mongodb container type used in the module
+type Container struct {
+	testcontainers.Container
+}
+
+// NewContainer creates an instance of the mongodb container type
+func NewContainer(ctx contextx.Contextx) (*Container, error) {
+	req := testcontainers.ContainerRequest{
+		Image:        "mongo:6",
+		ExposedPorts: []string{"27017/tcp"},
+		WaitingFor: wait.ForAll(
+			wait.ForLog("Waiting for connections"),
+			wait.ForListeningPort("27017/tcp"),
+		),
+	}
+	container, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		ContainerRequest: req,
+		Started:          true,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return &Container{Container: container}, nil
 }
 
 // ProviderSet is mongodb providers
