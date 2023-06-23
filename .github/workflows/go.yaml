@@ -36,3 +36,7 @@ jobs:
       - name: Build
         run: |
           make build-go
+
+      - name: Test
+        run: |
+          make test-go

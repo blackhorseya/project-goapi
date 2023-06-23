@@ -9,14 +9,14 @@ import (
 
 // Reader declare a reader interface
 type Reader interface {
-	// GetUserByUsername serve caller to get user profile by username
-	GetUserByUsername(ctx contextx.Contextx, username string) (info *userM.Profile, err error)
+	// GetUserByName serve caller to get user profile by name
+	GetUserByName(ctx contextx.Contextx, name string) (info *userM.Profile, err error)
 }
 
 // Writer declare a writer interface
 type Writer interface {
 	// CreateUser serve caller to create a user profile
-	CreateUser(ctx contextx.Contextx, username, password string) (info *userM.Profile, err error)
+	CreateUser(ctx contextx.Contextx, name, password string) (info *userM.Profile, err error)
 
 	// UpdateUser serve caller to update a user profile
 	UpdateUser(ctx contextx.Contextx, user *userM.Profile) error
